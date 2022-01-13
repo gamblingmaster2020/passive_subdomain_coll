@@ -130,11 +130,12 @@ if __name__ == '__main__':
 
     cmd = "echo {0} | subfinder  -silent -t 20| httpx -silent -status-code -title -ip -nc -cdn -fc 403,404,400".format(domain)
     # cmd = "echo 123"
+    path = os.getcwd()+'/raw/'+domain+'.txt'
     print("执行的命令为："+cmd)
     print("原始数据存储位置："+path)
     p = os.popen(cmd)
     x = p.read()
-    path = os.getcwd()+'/raw/'+domain+'.txt'
+  
 
 
     with  open(path, "w+") as f:
