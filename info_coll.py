@@ -48,10 +48,11 @@ def optmize(a):
         a.append(" ")
 
 
-def formatting():
+def formatting(pathh):
     #得到httpx的解析数据
+    print("深度收集原始数据信息:"+pathh)
     buf=[]
-    with  open("2.txt", "r") as f:
+    with  open(pathh, "r") as f:
         for i in f:
             i=i.strip()
             i=i.split(" ")
@@ -112,9 +113,9 @@ def output_excel(buf,name):
             # print(buf[i][ii])
             sheet1.write(i + 1, ii, buf[i][ii].strip("[]"))
 
-    path = os.getcwd()+'/'+name+'.xlsx'
-    workbook.save(path)   #保存
-    print("结果保存到："+path)
+    path1 = os.getcwd()+'/result/'+name+'.xlsx'
+    workbook.save(path1)   #保存
+    print("最终结果保存到："+path1)
 
 
 if __name__ == '__main__':
@@ -128,12 +129,18 @@ if __name__ == '__main__':
     domain = sys.argv[1]
 
     cmd = "echo {0} | subfinder  -silent -t 20| httpx -silent -status-code -title -ip -nc -cdn -fc 403,404,400".format(domain)
+    # cmd = "echo 123"
     print("执行的命令为："+cmd)
+    print("原始数据存储位置："+path)
     p = os.popen(cmd)
     x = p.read()
-    with  open("2.txt", "w+") as f:
+    path = os.getcwd()+'/raw/'+domain+'.txt'
+
+
+    with  open(path, "w+") as f:
         f.write(x)
-    buf = formatting()
+    
+    buf = formatting(path)
     buf = zengjiashuju(buf)
     output_excel(buf=buf,name=domain)
     end = time.time()
