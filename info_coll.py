@@ -22,15 +22,6 @@ def org_city(ip):
     a.append("/".join(out[0:4]))
     out[0:4] = a
     b= []
-    # ip=ip.strip("[]")
-    # a = []
-    # url = "https://ipinfo.io/"
-    # token = "?token=c1ad3714f3944c"
-    #
-    # r = requests.get(url + ip +token)
-    #
-    # data = json.loads(r.text)
-    # # print(data)
     try:
         city = str(out[0])
     except:
