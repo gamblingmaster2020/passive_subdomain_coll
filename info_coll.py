@@ -97,7 +97,15 @@ def zengjiashuju(buf):
 def output_excel(buf,name):
     print("正在将结果转化为excel文件......")
     workbook = xlwt.Workbook(encoding='utf-8')       #新建工作簿
-    sheet1 = workbook.add_sheet("测试表格")          #新建sheet
+    sheet1 = workbook.add_sheet("result")          #新建sheet
+    sheet1.col(0).width = 256 * 30  # Set the column width
+    sheet1.col(1).width = 256 * 7  # Set the column width
+    sheet1.col(2).width = 256 * 30  # Set the column width
+    sheet1.col(3).width = 256 * 20  # Set the column width
+    sheet1.col(4).width = 256 * 20  # Set the column width
+    sheet1.col(5).width = 256 * 13  # Set the column width
+    sheet1.col(6).width = 256 * 5  # Set the column width
+
     sheet1.write(0,0,"url")      #第1行第1列数据
     sheet1.write(0,1,"状态码")  # 第1行第2列数据
     sheet1.write(0,2,"title")      #第1行第2列数据
